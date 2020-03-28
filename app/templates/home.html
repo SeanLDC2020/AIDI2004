@@ -1,0 +1,33 @@
+<html>
+  <body>
+    <h1>Add Student Record</h1>
+    <form method="POST" action="/">
+      Student ID:<input type="text" name="student_id">
+      First Name:<input type="text" name="first_name">
+      Last Name:<input type="text" name="last_name">
+      Date of Birth:<input type="date" name="dob">
+      Amount Due:<input type="text" name="amount_due">
+      <input type="submit" value="Add">
+    </form>
+
+    <h1>Students</h1>
+    <table>
+    {% for student in students %}
+      <tr><td>{{student.student_id}}
+        <form method="POST" action="./update">
+            <input type="hidden" value="{{student.student_id}}" name="student_id">
+            <input type="text" value="{{student.first_name}}" name="first_name">
+            <input type="text" value="{{student.last_name}}" name="last_name">
+            <input type="date" value="{{student.dob}}" name="dob">
+            <input type="text" value="{{student.amount_due}}" name="amount_due">
+          <input type="submit" value="Update">
+        </form>
+        <form method="POST" action="./delete">
+          <input type="hidden" value="{{student.student_id}}" name="student_id">
+          <input type="submit" value="Delete">
+        </form>
+      </td></tr>
+    {% endfor %}
+    </table>
+  </body>
+</html>
